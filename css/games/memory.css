@@ -137,3 +137,27 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.cards li.click img {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+.cards li.correctCard {
+  transition: all 0.3s linear;
+  background: rgb(46, 45, 45);
+  pointer-events: none;
+  user-select: none;
+}
+
+.cards li.correctCard img {
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.correctCard {
+  pointer-events: none;
+  user-select: none;
+}
