@@ -3,3 +3,5 @@
 @import "./css/elementos.css";
 @import "./css/games.css";
 @import "./css/main.css";
+
+@import "./css/games/memory.css";
