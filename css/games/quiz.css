@@ -1,0 +1,157 @@
+.quiz {
+  display: grid;
+  grid-template-rows: 2em 1fr;
+  justify-items: center;
+  text-align: center;
+  color: white;
+  font-family: "VCR OSD Mono", monospace;
+  padding-top: 20px;
+}
+
+.quiz h1 {
+  text-shadow: 3px 3px #000000;
+  margin-top: 70px;
+  align-self: center;
+  font-size: 4rem;
+  margin-bottom: 30px;
+}
+
+.quiz p {
+  margin-bottom: 40px;
+  font-size: 1.2rem;
+  text-shadow: 3px 3px #000000;
+}
+
+.quiz button,
+.quiz a {
+  background: rgb(204, 0, 175);
+  border: none;
+  font-family: "VCR OSD Mono", monospace;
+  padding: 16px 32px;
+  color: white;
+  font-size: 1.2rem;
+  box-shadow: rgb(0 0 0 / 75%) 5px 8px 0px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.quiz button:hover,
+.quiz a:hover {
+  background: rgb(68, 21, 111);
+}
+
+marquee span {
+  margin-left: 60px;
+}
+
+body.activeQuiz .contentPerguntas {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+body.activeQuiz .contentPerguntas div {
+  display: grid;
+  justify-items: center;
+}
+
+body.activeQuiz .contentPerguntas img {
+  width: 8em;
+}
+
+body.activeQuiz .contentPerguntas h2 {
+  padding-bottom: 60px;
+}
+
+body.activeQuiz .contentPerguntas ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  gap: 0px 40px;
+}
+
+body.activeQuiz .contentPerguntas ul li {
+  margin-top: 20px;
+  background: rgb(51, 51, 51);
+  padding: 8px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-shadow: 2px 2px #000000;
+  transition: 0.2s;
+  font-size: 1.2rem;
+}
+
+body.activeQuiz .contentPerguntas ul li:hover {
+  background: rgb(32, 32, 32);
+}
+
+body.activeQuiz .contentPerguntas ul li:first-child {
+  margin-top: 0px;
+}
+
+body.activeQuiz .contentPerguntas ul li.mark {
+  background: rgb(32, 32, 32);
+}
+
+body.activeQuiz #pergunta4 img,
+body.activeQuiz #pergunta6 img,
+body.activeQuiz #pergunta7 img {
+  width: 20em;
+  border-radius: 6px;
+}
+
+body.activeQuiz #pergunta8 img {
+  width: 30em;
+  border-radius: 4px;
+}
+
+body.activeQuiz #pergunta5 img {
+  width: 15em;
+}
+
+body.activeQuiz #pergunta2 img {
+  width: 10em;
+}
+
+body.activeQuiz .contentPerguntas ul li.markGreen {
+  background: green;
+}
+
+body.activeQuiz .contentPerguntas ul li.markRed {
+  background: rgb(175, 28, 2);
+}
+
+.reset {
+  display: none;
+  position: absolute;
+  top: 40%;
+  background: rgb(22 22 22);
+  padding: 2em 3em;
+  border-radius: 4px;
+  pointer-events: all;
+  user-select: all;
+}
+
+.reset.active {
+  display: block;
+}
+
+.reset button,
+.reset a {
+  padding: 8px 16px;
+  box-shadow: rgb(0 0 0 / 75%) 3px 3px 0px;
+}
+
+.reset div {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 0px 20px;
+  justify-content: center;
+}
+
+.pergunta.resetOpen li {
+  pointer-events: none;
+  user-select: none;
+}
