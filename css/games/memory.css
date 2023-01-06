@@ -1,0 +1,163 @@
+.sidebar {
+  display: grid;
+  grid-template-rows: 5em 1fr;
+  color: white;
+  background: rgb(24, 24, 24);
+  font-family: "VCR OSD Mono", monospace;
+  text-shadow: 3px 3px #000000;
+  height: 100vh;
+}
+
+.sidebar h2 {
+  text-shadow: 3px 3px #000000;
+  margin-top: 20px;
+  align-self: center;
+}
+
+.sidebar ul {
+  padding-top: 10px;
+}
+
+.sidebar ul li {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 5px 0px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding: 12px;
+  transition: 0.3s;
+}
+
+.sidebar ul li:hover {
+  background: rgb(51, 51, 51);
+  border-radius: 4px;
+}
+
+.sidebar ul li div {
+  display: flex;
+  gap: 0px 24px;
+  align-items: center;
+}
+
+.sidebar ul li p {
+  font-size: 1.2rem;
+}
+
+.sidebar button {
+  background: #242424;
+  color: white;
+  border: none;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: "VCR OSD Mono";
+  text-shadow: 2px 2px #000;
+  color: rgb(84, 255, 26);
+  font-size: 1rem;
+  cursor: pointer;
+  justify-self: right;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+}
+
+.cards {
+  display: grid;
+  grid-template-rows: 5em 1fr;
+  color: white;
+}
+
+.cards h1 {
+  font-size: 2rem;
+}
+
+.cards-text {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Capcom", monospace;
+  text-shadow: 3px 3px #551a8b;
+  margin-top: 20px;
+}
+
+.cards-text .resetMemory {
+  font-family: "Capcom", monospace;
+  color: #fff;
+  text-shadow: 2px 2px #551a8b;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.cards-text .extras {
+  display: flex;
+  gap: 0px 100px;
+  font-size: 1.5rem;
+}
+
+.cards-text .extras div {
+  padding: 5px 12px;
+  text-align: center;
+}
+
+.cards-text .extras span {
+  font-size: 1rem;
+}
+
+.cards ul {
+  display: grid;
+  padding-top: 50px;
+  justify-content: center;
+  grid-template-columns: repeat(4, 9em);
+  grid-template-rows: repeat(3, 5em);
+  justify-items: center;
+  gap: 30px 0px;
+}
+
+.cards img {
+  opacity: 0;
+  width: 80px;
+  padding: 15px;
+  -webkit-user-drag: none;
+  height: 80px;
+  object-fit: contain;
+}
+
+.cards li {
+  align-self: start;
+  background: whitesmoke;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.cards li.click img {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+.cards li.correctCard {
+  transition: all 0.3s linear;
+  background: rgb(46, 45, 45);
+  pointer-events: none;
+  user-select: none;
+}
+
+.cards li.correctCard img {
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.correctCard {
+  pointer-events: none;
+  user-select: none;
+}
