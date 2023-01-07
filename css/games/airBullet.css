@@ -1,0 +1,98 @@
+.backgroundGame {
+  background-image: url("../../imgs/gameImgs/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "VCR OSD Mono", monospace;
+}
+
+.initGame {
+  position: absolute;
+  z-index: 2000;
+  background: rgba(255, 255, 255, 0.075);
+  margin-top: 15px;
+}
+
+.initGame h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.initGame .teclas {
+  margin-top: 12px;
+}
+
+.initGame p {
+  margin-bottom: 10px;
+}
+
+.initGame button {
+  margin-top: 12px;
+  background: rgb(204, 0, 175);
+  border: none;
+  padding: 4px 12px;
+  font-family: "VCR OSD Mono", monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.initGame button:hover {
+  background: rgb(160, 2, 136);
+}
+
+.initGame.close {
+  display: none;
+}
+
+.initGame span {
+  display: block;
+  margin-top: 5px;
+}
+
+.moedas {
+  display: flex;
+  right: 10px;
+  top: 10px;
+  position: absolute;
+  gap: 0px 12px;
+  align-items: center;
+}
+
+.moedas img {
+  width: 1em;
+  height: 1em;
+}
+
+.screenGame {
+  position: relative;
+  height: 20em;
+}
+
+.airPlayer {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 34px;
+  height: 34px;
+}
+
+.alienEnemy {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  transition: 0.3s;
+}
+
+.bomba {
+  display: none;
+}
+
+.coin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+}
+
+#naveGame .reset {
+  background: rgb(22 22 22 / 24%);
+}
