@@ -68,12 +68,24 @@
   height: 20em;
 }
 
+.coin {
+  position: absolute;
+}
+
 .airPlayer {
   display: flex;
   align-items: center;
-  position: absolute;
   width: 34px;
   height: 34px;
+  position: absolute;
+}
+
+.fire {
+  display: inline-block;
+  width: 5px;
+  height: 2px;
+  background: red;
+  position: absolute;
 }
 
 .alienEnemy {
@@ -83,14 +95,64 @@
   transition: 0.3s;
 }
 
+.drone {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  transition: 0.3s;
+  animation: moveDrone 2s ease-in-out infinite;
+  animation-direction: alternate;
+}
+
+@keyframes moveDrone {
+  from {
+    transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    transform: translate3d(0px, 10px, 0px);
+  }
+}
+
 .bomba {
   display: none;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  transition: 0.3s;
 }
 
 .coin {
-  position: absolute;
   width: 24px;
   height: 24px;
+}
+
+.gameOver {
+  display: none;
+}
+
+.gameOver.active {
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 2000;
+}
+
+.gameOver h1 {
+  color: #fff;
+  text-shadow: 3px 3px #000;
+  margin-top: 20px;
+  align-self: center;
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.gameOver p {
+  color: #fff;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px #000;
 }
 
 #naveGame .reset {
