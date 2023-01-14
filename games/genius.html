@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body id="naveGame">
+  <article class="introducao-bg">
+    <div class="introducao container">
+      <a href="../main.html" class="logo">
+        <h1 class="primaryText">JS</h1>
+        <span class="subText">GAMES</span>
+      </a>
+      <ul>
+        <li class="links">INICIO</li>
+        <li class="links">GAMES</li>
+        <li class="links"><a href="../sobre.html">SOBRE</a></li>
+      </ul>
+    </div>
+  </article>
+
+  <section class="content">
+    <div class="sidebar container">
+      <h2 class="bText-font2">Friends</h2>
+      <ul>
+        <li>
+          <div>
+            <img src="../imgs/iconsFriends/icon1.svg" alt="">
+            <p class="ppText">FanX</p>
+          </div>
+          <button class="ppText">ADD</button>
+        </li>
+        <li>
+          <div>
+            <img src="../imgs/iconsFriends/icon2.svg" alt="">
+            <p class="ppText">PowNai</p>
+          </div>
+          <button class="ppText">ADD</button>
+        </li>
+        <li>
+          <div>
+            <img src="../imgs/iconsFriends/icon3.svg" alt="">
+            <p class="ppText">LetGou</p>
+          </div>
+          <button class="ppText">ADD</button>
+        </li>
+        <li>
+          <div>
+            <img src="../imgs/iconsFriends/icon4.svg" alt="">
+            <p class="ppText">NimFlair</p>
+          </div>
+          <button class="ppText">ADD</button>
+        </li>
+        <li>
+          <div>
+            <img src="../imgs/iconsFriends/icon5.svg" alt="">
+            <p class="ppText">Pinkman</p>
+          </div>
+          <button class="ppText">ADD</button>
+        </li>
+      </ul>
+    </div>
+
+
+    <main class="genius container">
+
+      <article class="help">
+        <div class="helpModal">
+          <p>Aprenda a jogar!</p>
+          <ul>
+            <li>Para iniciar, clique no botão "INIT".</li>
+            <li>Você terá que seguir a sequência de acordo com as cores que piscarem.</li>
+            <li>Ao ir avançando, o número do meio irá somar de acordo com os acertos.</li>
+            <li>Caso erre, voltará do começo e irá gerar outra sequência.</li>
+          </ul>
+        </div>
+      </article>
+
+      <div class="genius-text">
+        <div class="helpElement">
+          <h1>GENIUS</h1>
+          <span>?</span>
+        </div>
+        <button class="initBtn">INIT</button>
+      </div>
+
+      <div class="bgPecas">
+        <div class="circleGenius">
+          <h1>GENIUS</h1>
+          <span id="count">1</span>
+        </div>
+
+        <div class="pecas">
+          <div class="elementBlock blue"></div>
+          <div class="elementBlock red"></div>
+          <div class="elementBlock yellow"></div>
+          <div class="elementBlock green"></div>
+        </div>
+      </div>
+
+      <div class="audios">
+        <audio src="../js/genius/geniusSounds/audio_simonSound1.mp3"></audio>
+        <audio src="../js/genius/geniusSounds/audio_simonSound2.mp3"></audio>
+        <audio src="../js/genius/geniusSounds/audio_simonSound3.mp3"></audio>
+        <audio src="../js/genius/geniusSounds/audio_simonSound4.mp3"></audio>
+      </div>
+
+    </main>
+  </section>
+
+  <script type="module" src="../script.js"></script>
+</body>
+
+</html>
