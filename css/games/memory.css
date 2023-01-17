@@ -138,9 +138,14 @@
   cursor: pointer;
 }
 
-.cards li.click img {
+.cards li.showCard img {
   opacity: 1;
   transition: 0.2s;
+}
+
+.cards li.desativeCard {
+  pointer-events: none;
+  user-select: none;
 }
 
 .cards li.correctCard {

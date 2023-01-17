@@ -1,27 +1,26 @@
+import shuffleArray from "./reused/shuffler.js";
+
 export default function memoryGame() {
   if (document.body.classList.contains("mGame")) {
     const cards = document.querySelectorAll(".cards ul li");
-    const correctHtml = document.querySelector(".setCorrect");
+    const hitCount = document.querySelector(".hitCount");
     const resetGame = document.querySelector(".resetMemory");
 
-    resetGame.addEventListener("click", () => {
-      window.location.reload();
-    });
-
-    let arr = [];
+    let targetCards = [];
     let correct = 0;
     let setTime;
 
     function setMinuteAndSeconds() {
       const elementTime = document.querySelector(".time");
       let time = 0;
+
       setTime = setInterval(() => {
         time++;
+
         let mind = time % (60 * 60);
         let minutes = Math.floor(mind / 60);
 
-        let secd = mind % 60;
-        let seconds = Math.ceil(secd);
+        let seconds = Math.ceil(mind % 60);
 
         seconds < 10 ? (seconds = `0${seconds}`) : seconds;
 
@@ -29,55 +28,61 @@ export default function memoryGame() {
         elementTime.innerText = mAndS;
       }, 1000);
     }
+
     setMinuteAndSeconds();
 
     function clickCard({ target }) {
       if (
-        target != arr[0] &&
+        target != targetCards[0] &&
         !target.parentElement.classList.contains("correctCard")
       ) {
-        arr.push(target);
-        target.parentElement.classList.add("click");
+        targetCards.push(target);
+        target.parentElement.classList.add("showCard");
       }
 
       function desativeCards(condition) {
-        if (arr.length === 2 && condition) {
-          cards.forEach((element) => {
-            element.style.pointerEvents = "none";
-            element.style.userSelect = "none";
-          });
-        } else {
-          cards.forEach((element) => {
-            if (!element.classList.contains("correctCard")) {
-              element.style.pointerEvents = "all";
-              element.style.userSelect = "all";
-            }
-          });
-        }
+        cards.forEach((element) => {
+          if (condition) element.classList.add("desativeCard");
+          else if (!condition && !element.classList.contains("correctCard")) {
+            element.classList.remove("desativeCard");
+            element.classList.remove("showCard");
+          }
+        });
       }
 
-      if (arr.length === 2 && arr[0].alt != arr[1].alt) {
+      function differentCards() {
         desativeCards(true);
+
         setTimeout(() => {
-          arr.forEach((item) => item.parentElement.classList.remove("click"));
-          desativeCards(false);
-          arr.splice(0, 2);
-        }, 700);
-      } else if (arr.length === 2 && arr[0].alt === arr[1].alt) {
-        desativeCards(true);
-        arr.forEach((item) => {
-          item.parentElement.classList.add("correctCard");
-          item.parentElement.classList.remove("click");
-        });
-        setTimeout(() => {
+          targetCards.splice(0, 2);
           desativeCards(false);
         }, 500);
-        arr.splice(0, 2);
+      }
+
+      function equalCards() {
+        desativeCards(true);
+
+        targetCards.forEach((card) => {
+          card.parentElement.classList.add("correctCard");
+        });
+
         correct++;
+
+        setTimeout(() => {
+          targetCards.splice(0, 2);
+          desativeCards(false);
+        }, 500);
+      }
+
+      const [card1, card2] = targetCards;
+
+      if (targetCards.length === 2) {
+        if (card1.alt != card2.alt) differentCards();
+        else equalCards();
       }
 
       if (correct === 8) clearInterval(setTime);
-      correctHtml.innerText = correct;
+      hitCount.innerText = correct;
       randomImgs();
     }
 
@@ -93,49 +98,24 @@ export default function memoryGame() {
         "../imgs/memoryGameIcons/react.svg",
       ];
 
-      let arrImg1 = [];
-      let arrImgs2 = arrImgs.map((item) => item);
-
-      arrImgs = arrImgs.concat(...arrImgs2);
-
-      for (let index = 0; index < arrImgs.length; index++) {
-        const img = new Image();
-        img.src = arrImgs[index];
-        arrImg1.push(img.src);
-      }
-      return shuffleArray(arrImg1);
+      const cloneImgs = arrImgs.map((item) => item);
+      arrImgs = arrImgs.concat(...cloneImgs);
+      return shuffleArray(arrImgs);
     }
 
-    function shuffleArray(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return setImgs(arr);
-    }
-
-    function setImgs(arr) {
-      const random = arr;
-      let diretorioImgs = [];
-      random.forEach((element) => {
-        const item = element.split("00/")[1];
-        diretorioImgs.push(`../${item}`);
-      });
-      return diretorioImgs;
-    }
-
-    cards.forEach((element, i) => {
-      element.addEventListener("click", (event) => {
-        clickCard(event);
-      });
+    randomImgs().forEach((img, i) => {
+      const icons = document.querySelectorAll(".cards ul li img");
+      const nameIcon = img.split("/")[3].replace(".svg", "");
+      icons[i].src = img;
+      icons[i].alt = `${nameIcon}Icon`;
     });
 
-    randomImgs().forEach((element, i) => {
-      const image = document.createElement("img");
-      image.src = element;
-      const nameIcon = element.split("/")[3].replace(".svg", "");
-      image.alt = `${nameIcon}Icon`;
-      cards[i].appendChild(image);
+    resetGame.addEventListener("click", () => {
+      window.location.reload();
+    });
+
+    cards.forEach((element) => {
+      element.addEventListener("click", clickCard);
     });
   }
 }
