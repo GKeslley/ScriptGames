@@ -4,38 +4,35 @@ import wordsTermos from "./words.js";
 export default function termosGame() {
   const content = document.querySelector(".blocos");
   const words = document.querySelectorAll(".letras button");
+
   const resetContent = document.querySelector(".reset");
+  const subTitleReset = resetContent.querySelector("span");
+
   const attempts = document.querySelector(".tentativa");
+  const btnReset = document.querySelector(".btnReset");
 
   if (content && words.length) {
     const openContentHelp = document.querySelector(".helpElement span");
 
-    const randomNumber = Math.floor(
-      Math.random() * (wordsTermos().length - 0) + 0
-    );
-
+    const randomNumber = Math.floor(Math.random() * wordsTermos().length);
     const randomWord = wordsTermos()[randomNumber];
 
-    let palavra = randomWord;
+    const word = randomWord;
 
-    let i = 0;
-    let indexInArray = 0;
+    let actualIndex = 0;
     let lengthWord = 0;
+
     const sizeWord = [];
 
-    let blocoElement = 0;
+    let userAttempt = 0;
     const arrWords = [];
 
     function createAndSetElements() {
       const setLis = document.createElement("ul");
 
-      while (i < palavra.length) {
+      while (lengthWord < word.length) {
         const li = document.createElement("li");
         setLis.appendChild(li);
-        i++;
-      }
-
-      while (lengthWord < palavra.length) {
         sizeWord.push(undefined);
         lengthWord++;
       }
@@ -47,247 +44,227 @@ export default function termosGame() {
         content.appendChild(ul);
       }
     }
+
     createAndSetElements();
 
-    function selectWord({ target }) {
+    function initGame({ target }) {
       const contentElements = document.querySelectorAll(".blocos ul");
-      const wordClick = target.innerText;
-      const lis = contentElements[blocoElement].querySelectorAll("li");
+      const targetText = target.innerText;
+
+      const allElements = contentElements[userAttempt].querySelectorAll("li");
+
+      let actualAttempt = arrWords[userAttempt];
+      let allActualLetters;
+      let allClassElements;
 
       function setWord() {
-        if (
-          wordClick != "DEL" &&
-          wordClick != "ENTER" &&
-          indexInArray < palavra.length
-        ) {
-          for (let index = blocoElement; index < 5; index++) {
+        if (targetText != "DEL" && targetText != "ENTER" && actualIndex < word.length) {
+          for (let index = userAttempt; index < 5; index++) {
             const element = new Array();
             arrWords.push(element);
           }
 
           arrWords.length = 5;
-          arrWords[blocoElement].push(...sizeWord);
-          arrWords[blocoElement].length = palavra.length;
 
-          const filtro = arrWords[blocoElement].filter((element) => {
-            return element != undefined;
+          actualAttempt = arrWords[userAttempt];
+          actualAttempt.push(...sizeWord);
+          actualAttempt.length = word.length;
+
+          allActualLetters = actualAttempt.filter((letter) => {
+            return letter != undefined;
           });
 
-          if (indexInArray < 0) indexInArray = filtro.length;
+          if (actualIndex < 0) actualIndex = allActualLetters.length;
 
           setTimeout(() => {
-            if (arrWords[blocoElement].includes(undefined)) {
-              lis[indexInArray].innerText = wordClick;
-              indexInArray++;
+            if (actualAttempt.includes(undefined)) {
+              allElements[actualIndex].innerText = targetText;
+              actualIndex++;
             }
-            colorBlock(indexInArray);
+            setBorderInActualElement(actualIndex);
           }, 1);
         }
       }
+
       setWord();
 
-      function colorBlock(indexElement) {
+      function setBorderInActualElement(actualIndexInElement) {
         function removeDataAttribute() {
-          lis.forEach((item) => item.removeAttribute("data-select"));
+          allElements.forEach((li) => li.removeAttribute("data-select"));
         }
 
-        if (indexElement >= 0 && indexElement < palavra.length) {
+        if (actualIndexInElement >= 0 && actualIndexInElement < word.length) {
           removeDataAttribute();
-          lis[indexElement].setAttribute("data-select", "true");
+          allElements[actualIndexInElement].setAttribute("data-select", "true");
         }
 
-        if (indexElement < 0 && indexElement < palavra.length) {
+        if (actualIndexInElement >= word.length || actualIndexInElement === -1) {
           removeDataAttribute();
-          lis[palavra.length + indexElement].setAttribute(
-            "data-select",
-            "true"
-          );
         }
-
-        if (indexElement >= palavra.length || indexElement === -1)
-          removeDataAttribute();
       }
 
       function deletWord() {
-        const arr = arrWords[blocoElement];
+        if (targetText === "DEL" && actualAttempt.length) {
+          actualIndex--;
 
-        if (wordClick === "DEL" && arr.length) {
-          indexInArray--;
-
-          const filterWords = arrWords[blocoElement].filter((element) => {
-            return element != undefined;
+          allActualLetters = actualAttempt.filter((letter) => {
+            return letter != undefined;
           });
 
-          const lastWord = filterWords[filterWords.length - 1];
+          const lastLetter = allActualLetters[allActualLetters.length - 1];
+          const lastCaseLetter = actualAttempt.lastIndexOf(lastLetter);
 
-          const lastElement = arrWords[blocoElement].lastIndexOf(lastWord);
+          allElements[lastCaseLetter].innerText = "";
+          allActualLetters.pop();
 
-          lis[lastElement].innerText = "";
+          actualAttempt.splice(lastCaseLetter, 1);
+          actualIndex = actualAttempt.indexOf(undefined);
 
-          filterWords.pop();
-
-          arrWords[blocoElement].splice(lastElement, 1);
-
-          indexInArray = arrWords[blocoElement].indexOf(undefined);
-          colorBlock(indexInArray);
+          setBorderInActualElement(actualIndex);
         }
       }
 
       deletWord();
 
-      function enterElement() {
-        const arrWord = arrWords[blocoElement];
+      function confirmAttempt() {
+        actualAttempt = arrWords[userAttempt];
+
         if (
-          wordClick === "ENTER" &&
-          arrWord.length === palavra.length &&
-          !arrWord.includes(undefined)
+          targetText === "ENTER" &&
+          actualAttempt.length === word.length &&
+          !actualAttempt.includes(undefined)
         ) {
-          indexInArray = 0;
-          blocoElement++;
-          if (blocoElement >= 5) attempts.innerText = 5;
-          else attempts.innerText = blocoElement + 1;
-          checkIfWordIncludes(arrWord);
+          actualIndex = 0;
+          userAttempt++;
+
+          if (userAttempt >= 5) attempts.innerText = 5;
+          else attempts.innerText = userAttempt + 1;
+          allElements[0].parentElement.classList.add("complet");
+
+          verifyWordAndChangeColor(actualAttempt);
         }
       }
 
-      enterElement();
+      confirmAttempt();
 
       function resetGame() {
-        const btnReset = document.querySelector(".btnReset");
-        setTimeout(() => {
-          resetContent.classList.add("active");
-        }, 500);
-        words.forEach((btn) => {
-          btn.style.userSelect = "none";
-          btn.style.pointerEvents = "none";
-        });
+        resetContent.classList.add("active");
+
+        words.forEach((letter) => letter.classList.add("desativeLetter"));
+
         btnReset.addEventListener("click", () => {
-          window.location.reload();
+          window.location.reload(true);
         });
       }
 
-      function checkIfWordIncludes(wordComplet) {
+      function verifyWordAndChangeColor(wordComplet) {
         wordComplet.forEach((letter, index) => {
-          if (palavra.includes(letter)) {
-            if (letter != palavra.split("")[index]) {
-              lis[index].style.background = "#ab9600";
+          if (word.includes(letter)) {
+            if (letter != word.split("")[index]) {
+              allElements[index].classList.add("wrongPlaceLetter");
             } else {
-              lis[index].style.background = "green";
-              lis[index].classList.add("correct");
+              allElements[index].classList.add("correct");
             }
           } else {
-            words.forEach((btn) => {
-              if (btn.innerText === letter) {
-                btn.style.background = "rgba(100, 100, 100, 5%)";
+            words.forEach((btnLetter) => {
+              if (btnLetter.innerText === letter) {
+                btnLetter.classList.add("wrongLetter");
               }
             });
           }
         });
+      }
 
-        function loseGame() {
-          const subTitleReset = resetContent.querySelector("span");
-          subTitleReset.innerText = `A palavra correta era: ${palavra}`;
+      function loseGame() {
+        subTitleReset.innerText = `A palavra correta era: ${word}`;
+        setTimeout(resetGame, 500);
+      }
+
+      function checkIfHit() {
+        function winGame() {
+          const titleReset = resetContent.querySelector("p");
+
+          attempts.innerText = userAttempt;
+          titleReset.innerText = "Você acertou!";
+
+          subTitleReset.innerText = `Palavra correta: ${word}`;
           setTimeout(resetGame, 500);
         }
 
-        function checkIfHit() {
-          function winGame() {
-            attempts.innerText = blocoElement;
-            const titleReset = resetContent.querySelector("p");
-            const subTitleReset = resetContent.querySelector("span");
-            titleReset.innerText = "Você acertou!";
-            subTitleReset.innerText = `Palavra correta: ${palavra}`;
-            setTimeout(resetGame, 500);
-          }
+        allClassElements = [...allElements].map((element) => {
+          return element.getAttribute("class");
+        });
 
-          const classElements = [...lis].map((element) => {
-            return element.getAttribute("class");
-          });
+        const correctLetters = allClassElements.filter(
+          (element) => element === "correct"
+        );
 
-          lis[0].parentElement.classList.add("complet");
-
-          const filtCorrects = classElements.filter(
-            (element) => element === "correct"
-          );
-
-          if (filtCorrects.length === palavra.length) {
-            winGame();
-          } else if (
-            blocoElement === 5 &&
-            filtCorrects.length < palavra.length
-          ) {
-            loseGame();
-          }
+        if (correctLetters.length === word.length) {
+          winGame();
+        } else if (userAttempt === 5 && correctLetters.length < word.length) {
+          loseGame();
         }
-
-        checkIfHit();
       }
 
-      function modifiedBloco(event) {
-        lis.forEach((element) => {
+      checkIfHit();
+
+      function chooseElement({ target }) {
+        allElements.forEach((element) => {
           element.classList.remove("modified");
         });
-        event.target.classList.add("modified");
 
-        if (event.target.classList.contains("modified")) {
-          indexInArray = [...lis].indexOf(event.target);
-          colorBlock(indexInArray);
-          console.log("indexInArray do modified", indexInArray);
+        target.classList.add("modified");
+
+        if (target.classList.contains("modified")) {
+          actualIndex = [...allElements].indexOf(target);
+          setBorderInActualElement(actualIndex);
         }
       }
 
       function modifiedText() {
-        if (arrWords[blocoElement] != undefined) {
-          const filterWords = arrWords[blocoElement].filter((element) => {
-            return element != undefined;
-          });
-
-          const classLis = [...lis].map((element) => {
-            return element.getAttribute("class");
+        if (actualAttempt != undefined) {
+          allActualLetters = actualAttempt.filter((letter) => {
+            return letter != undefined;
           });
 
           if (
             target.innerText != "ENTER" &&
             target.innerText != "DEL" &&
-            (filterWords.length < palavra.length ||
-              classLis.includes("modified"))
+            (allActualLetters.length < word.length ||
+              allClassElements.includes("modified"))
           ) {
-            if (filterWords.length === palavra.length) {
-              arrWords[blocoElement].splice(indexInArray, 1, target.innerText);
+            if (allActualLetters.length === word.length) {
+              actualAttempt.splice(actualIndex, 1, target.innerText);
             } else {
-              console.log("indexInArray subtrai", indexInArray);
-              arrWords[blocoElement].splice(
-                indexInArray - 1,
-                1,
-                target.innerText
-              );
-              indexInArray = arrWords[blocoElement].indexOf(undefined);
-              colorBlock(indexInArray);
+              actualAttempt.splice(actualIndex - 1, 1, target.innerText);
+              actualIndex = actualAttempt.indexOf(undefined);
+              setBorderInActualElement(actualIndex);
             }
           }
 
-          lis.forEach((item) => {
-            if (item.classList.contains("modified")) {
-              if (target.innerText != "DEL" && target.innerText != "ENTER") {
-                item.innerText = target.innerText;
-              }
-              indexInArray = arrWords[blocoElement].indexOf(undefined);
-              console.log(arrWords[blocoElement].indexOf(false));
-              console.log(indexInArray);
-              item.removeAttribute("data-select");
-            }
+          function changeLetter() {
+            allElements.forEach((element) => {
+              if (element.classList.contains("modified")) {
+                if (target.innerText != "DEL" && target.innerText != "ENTER") {
+                  element.innerText = target.innerText;
+                }
 
-            item.classList.remove("modified");
-          });
+                actualIndex = actualAttempt.indexOf(undefined);
+                element.removeAttribute("data-select");
+              }
+
+              element.classList.remove("modified");
+            });
+          }
+
+          changeLetter();
         }
       }
 
-      setTimeout(() => {
-        modifiedText();
-      }, 2);
+      setTimeout(modifiedText, 2);
 
-      lis.forEach((element) => {
-        element.addEventListener("click", modifiedBloco);
+      allElements.forEach((element) => {
+        element.addEventListener("click", chooseElement);
       });
     }
 
@@ -304,7 +281,7 @@ export default function termosGame() {
     openContentHelp.addEventListener("click", openHelp);
 
     words.forEach((element) => {
-      element.addEventListener("click", selectWord);
+      element.addEventListener("click", initGame);
     });
   }
 }

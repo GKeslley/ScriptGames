@@ -138,6 +138,15 @@
   margin-top: 12px;
   border-radius: 4px;
   transition: 0.5s;
+  cursor: pointer;
+}
+
+.blocos-item li.wrongPlaceLetter {
+  background: #ab9600;
+}
+
+.blocos-item li.correct {
+  background: #008000;
 }
 
 .letras {
@@ -167,6 +176,16 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.5s;
+}
+
+.letras button.desativeLetter {
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.letras button.wrongLetter {
+  background: rgba(100, 100, 100, 5%);
 }
 
 #k_enter,
