@@ -1,0 +1,306 @@
+#termosBody .reset {
+  top: 3em;
+  background: rgba(22, 22, 22, 0.72);
+}
+
+#termosBody .reset p {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1em;
+}
+
+#termosBody .reset span {
+  display: block;
+  text-align: center;
+  margin-bottom: 1.2em;
+}
+
+.termos {
+  display: grid;
+  grid-template-rows: auto auto;
+  margin: 0 auto;
+  font-family: "VCR OSD Mono";
+  padding-top: 10px;
+  color: #fff;
+}
+
+.termosText {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.termosText div {
+  text-align: center;
+}
+
+.helpElement {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.helpElement span {
+  border: 2px solid #fff;
+  padding: 1px 4px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.help {
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 1em 1em;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.help.active {
+  display: block;
+  overflow-y: auto;
+}
+
+.helpModal {
+  background: rgb(29, 29, 29);
+  padding: 40px;
+  border: 10px solid rgb(224, 224, 224);
+  box-shadow: 0 0 0 10px rgb(39, 39, 39);
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  margin-top: 4em;
+  min-width: 80vw;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+.helpModal p {
+  font-size: 1.2rem;
+  margin-bottom: 1em;
+}
+
+.helpModal ul {
+  display: grid;
+  gap: 24px 0px;
+}
+
+.helpModal li {
+  line-height: 1.1;
+}
+
+.helpModal ul li span {
+  display: block;
+  border: 2px solid #fff;
+  max-width: max-content;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-top: 0.5em;
+}
+
+.helpModal ul li:nth-child(3) span {
+  background: #008000;
+}
+
+.helpModal ul li:nth-child(4) span {
+  background: #ab9600;
+}
+
+.blocos {
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  justify-self: center;
+  padding-top: 5px;
+}
+
+.blocos-item {
+  display: flex;
+  justify-items: center;
+  gap: 12px;
+}
+
+.blocos-item li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  background: #333333;
+  width: 55px;
+  height: 55px;
+  margin-top: 12px;
+  border-radius: 4px;
+  transition: 0.5s;
+}
+
+.letras {
+  justify-content: center;
+}
+
+.letras div {
+  display: grid;
+  grid-template-columns: repeat(31, 1fr);
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.letras button {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  grid-column: span 3;
+  font-family: "VCR OSD Mono";
+  color: #fff;
+  background: #93929218;
+  border: none;
+  line-height: 2.5em;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#k_enter,
+#k_del {
+  background: #555555ce;
+}
+
+#k_enter {
+  grid-column: span 4;
+}
+
+#k_del {
+  grid-column: span 2;
+  padding: 0px 5px;
+  font-size: 0.7em;
+}
+
+li[data-select="true"] {
+  position: relative;
+}
+
+li[data-select="true"]::before {
+  content: "";
+  display: inline-block;
+  width: 2em;
+  height: 0.1em;
+  position: absolute;
+  color: #fff;
+  background: rgb(255, 255, 255);
+  bottom: 10px;
+}
+
+.complet li {
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 1010px) {
+  .blocos {
+    margin-bottom: 0.3em;
+  }
+  .content {
+    display: block;
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  #termosBody {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 800px) {
+  .termos {
+    gap: 1em 0em;
+  }
+
+  .blocos {
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    margin-bottom: 0.3em;
+    height: 100%;
+    justify-self: center;
+    max-width: 100%;
+    min-height: 0;
+    min-width: 0;
+    touch-action: manipulation;
+  }
+
+  .letras {
+    padding: 0em 0.5em;
+  }
+
+  li[data-select="true"]::before {
+    width: 1em;
+  }
+
+  .termosText {
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px 0px;
+  }
+
+  #k_del,
+  #k_enter {
+    font-size: 0.8rem;
+  }
+
+  #k_del {
+    grid-column: span 3;
+  }
+
+  #k_enter {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 600px) {
+  .termos {
+    display: grid;
+    gap: 1em;
+    padding: 2em 0;
+  }
+
+  .blocos {
+    gap: 0em;
+  }
+
+  .blocos-item {
+    gap: 0.5em;
+  }
+
+  .letras div {
+    grid-template-columns: repeat(32, 1fr);
+    gap: 0.25em;
+  }
+
+  .letras button {
+    padding: 0px;
+    grid-column: span 3;
+    font-size: 1rem;
+    line-height: 2.5em;
+  }
+
+  #k_enter {
+    grid-column: span 8;
+  }
+
+  .letras #k_del {
+    grid-column: span 4;
+  }
+}
