@@ -1,26 +1,21 @@
+import shuffleArray from "../reused/shuffler.js";
 import perguntasQuiz from "./perguntas.js";
 
 export default function quizGame() {
   const btn = document.querySelector(".initQuiz");
   const contentQuiz = document.querySelector("#quizScreen");
   const contentQuestions = document.querySelector(".contentPerguntas div");
+  let count = 1;
 
   function initGame() {
     contentQuiz.style.display = "none";
     document.body.classList.add("activeQuiz");
-    setInHtml();
+    selectQuestions();
   }
 
-  function shuffleArray(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
+  function selectQuestions() {
+    const questions = perguntasQuiz();
 
-  function setInHtml() {
-    const perguntas = perguntasQuiz();
     const {
       questao1,
       questao2,
@@ -30,49 +25,49 @@ export default function quizGame() {
       questao6,
       questao7,
       questao8,
-    } = perguntas.perguntas_respostas;
-    let arrPerguntas = [
-      "pergunta1",
-      "pergunta2",
-      "pergunta3",
-      "pergunta4",
-      "pergunta5",
-      "pergunta6",
-      "pergunta7",
-      "pergunta8",
-    ];
+    } = questions.perguntas_respostas;
 
-    let questionShuffle = shuffleArray(arrPerguntas);
+    const quantQuestions = Object.keys(questions.perguntas_respostas);
+    const allQuestions = [];
+
+    while (count <= quantQuestions.length) {
+      allQuestions.push(`pergunta${count}`);
+      count++;
+    }
+
+    let questionShuffle = shuffleArray(allQuestions);
     let firstQuestionShuffle = questionShuffle[0];
 
     function verifyQuestions() {
       contentQuestions.setAttribute("id", firstQuestionShuffle);
       questionShuffle.shift();
+
       firstQuestionShuffle = questionShuffle[0];
+
       switch (contentQuestions.id) {
         case "pergunta1":
-          addTextInHTML(questao1, "#pergunta1");
+          setQuestionsInHTML(questao1, "#pergunta1");
           break;
         case "pergunta2":
-          addTextInHTML(questao2, "#pergunta2");
+          setQuestionsInHTML(questao2, "#pergunta2");
           break;
         case "pergunta3":
-          addTextInHTML(questao3, "#pergunta3");
+          setQuestionsInHTML(questao3, "#pergunta3");
           break;
         case "pergunta4":
-          addTextInHTML(questao4, "#pergunta4");
+          setQuestionsInHTML(questao4, "#pergunta4");
           break;
         case "pergunta5":
-          addTextInHTML(questao5, "#pergunta5");
+          setQuestionsInHTML(questao5, "#pergunta5");
           break;
         case "pergunta6":
-          addTextInHTML(questao6, "#pergunta6");
+          setQuestionsInHTML(questao6, "#pergunta6");
           break;
         case "pergunta7":
-          addTextInHTML(questao7, "#pergunta7");
+          setQuestionsInHTML(questao7, "#pergunta7");
           break;
         case "pergunta8":
-          addTextInHTML(questao8, "#pergunta8");
+          setQuestionsInHTML(questao8, "#pergunta8");
           break;
         default:
           winQuiz();
@@ -82,40 +77,47 @@ export default function quizGame() {
 
     verifyQuestions();
 
-    function addTextInHTML(perguntasObject, elementID) {
-      let elementHtml = document.querySelector(elementID);
-      elementHtml.querySelector("h2").innerText = perguntasObject.title1;
-      elementHtml.querySelector("picture img").src = perguntasObject.img;
-      const options_li = elementHtml.querySelectorAll("ul li");
-      const options = perguntasObject.opcoes;
+    function setQuestionsInHTML(structureOfQuestion, elementID) {
+      const questionID = document.querySelector(elementID);
+      const { title1, img, opcoes } = structureOfQuestion;
+
+      questionID.querySelector("h2").innerText = title1;
+      questionID.querySelector("picture img").src = img;
+
+      const options = opcoes;
+      const options_li = questionID.querySelectorAll("ul li");
+
       const optionsValues = Object.values(options);
       const optionsKeys = Object.keys(options);
 
       function confirmAnswer({ target }) {
-        let index = optionsValues.indexOf(target.innerText);
-        if (optionsKeys[index] === "correta") {
+        let userChoice = optionsValues.indexOf(target.innerText);
+
+        if (optionsKeys[userChoice] === "correta") {
           target.classList.add("markGreen");
+
           setTimeout(() => {
             target.classList.remove("markGreen");
             verifyQuestions();
           }, 1000);
-        } else if (optionsKeys[index] != "correta") {
+        } else if (optionsKeys[userChoice] != "correta") {
           target.classList.add("markRed");
           buttonsResetGame();
         }
-        removeEventClick();
-      }
 
-      function removeEventClick() {
-        options_li.forEach((element, i) => {
-          element.removeEventListener("click", confirmAnswer);
-        });
+        removeEventClick();
       }
 
       options_li.forEach((element, i) => {
         element.innerText = optionsValues[i];
         element.addEventListener("click", confirmAnswer);
       });
+
+      function removeEventClick() {
+        options_li.forEach((element) => {
+          element.removeEventListener("click", confirmAnswer);
+        });
+      }
     }
 
     function buttonsResetGame() {
@@ -124,10 +126,8 @@ export default function quizGame() {
       reset.classList.add("active");
       contentQuestions.classList.add("resetOpen");
       btns.forEach((btn) => {
-        btn.addEventListener("click", ({ target }) => {
-          if (target.classList.contains("resetScreen")) {
-            location.reload(true);
-          }
+        btn.addEventListener("click", () => {
+          location.reload(true);
         });
       });
     }
