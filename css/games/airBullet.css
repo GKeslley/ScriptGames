@@ -1,8 +1,13 @@
+#naveGame {
+  height: 100vh;
+}
+
 .backgroundGame {
   background-image: url("../../imgs/gameImgs/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "VCR OSD Mono", monospace;
+  height: 100vh;
 }
 
 .initGame {
@@ -68,10 +73,6 @@
   height: 20em;
 }
 
-.coin {
-  position: absolute;
-}
-
 .airPlayer {
   display: flex;
   align-items: center;
@@ -124,6 +125,7 @@
 .coin {
   width: 24px;
   height: 24px;
+  position: absolute;
 }
 
 .gameOver {
