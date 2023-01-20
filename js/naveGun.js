@@ -1,6 +1,9 @@
+import verifyIsMobile from "./mobile/verifyIsMobile.js";
+
 export default function airGame() {
   if (document.body.id === "naveGame") {
     const content = document.querySelector(".screenGame");
+    const mobileContent = document.querySelector(".mobile");
 
     const modalInitGame = document.querySelector(".initGame");
     const btnInit = document.querySelector(".initGame button");
@@ -42,6 +45,7 @@ export default function airGame() {
       function initGame() {
         setEventsMove();
         modalInitGame.classList.add("close");
+        mobileContent.classList.add("initMobileGame");
       }
 
       function generateRandomLocations() {
@@ -460,6 +464,102 @@ export default function airGame() {
           location.reload(true);
         });
       }
+
+      //MOBILE
+      const joystickGun = document.querySelector("#joystickGun");
+      const teclas = document.querySelector(".teclas");
+
+      function mobile() {
+        if (verifyIsMobile()) {
+          document.body.classList.add("mobileUser");
+          teclas.style.display = "none";
+          setJoystickAndMoveAir();
+        } else {
+          document.body.classList.remove("mobileUser");
+          teclas.style.display = "block";
+        }
+
+        function setJoystickAndMoveAir() {
+          const mobileMove = document.querySelector("#stick");
+          const mobileInformation = document.querySelector(".mobileInformation");
+          const elementFullScreen = document.querySelector(".fullscreen-content");
+
+          mobileMove.addEventListener("touchstart", moveMobile);
+          mobileMove.addEventListener("touchend", endMoveMobile);
+
+          elementFullScreen.addEventListener("click", () => {
+            if (document.documentElement.requestFullscreen) {
+              document.documentElement.requestFullscreen();
+            }
+          });
+
+          if (window.innerHeight > window.innerWidth) {
+            mobileInformation.classList.add("mobileOn");
+            modalInitGame.classList.add("removeScreen");
+          }
+
+          window.addEventListener("resize", () => {
+            if (window.innerWidth > window.innerHeight) {
+              modalInitGame.classList.remove("removeScreen");
+              mobileInformation.style.display = "none";
+            } else {
+              modalInitGame.classList.add("removeScreen");
+              mobileInformation.classList.add("mobileOn");
+              mobileInformation.style.display = "grid";
+            }
+          });
+
+          function moveMobile(event) {
+            event.target.addEventListener("touchmove", moveAirMobile);
+          }
+
+          function moveAirMobile({ target }) {
+            const mobileClass = target.getAttribute("class");
+
+            if (mobileClass.includes("d")) {
+              moveWidth(1, 0.1, -1);
+              cordShots.right = false;
+              cordShots.left = true;
+            }
+            if (mobileClass.includes("s")) {
+              moveHeight(1, 0.1);
+            }
+            if (mobileClass.includes("w")) {
+              moveHeight(-1, -0.1);
+            }
+            if (mobileClass.includes("a")) {
+              moveWidth(-1, -0.1, 1);
+              cordShots.right = true;
+              cordShots.left = false;
+            }
+          }
+
+          function endMoveMobile({ target }) {
+            const mobileClass = target.getAttribute("class");
+
+            if (mobileClass.includes("d")) moveWidth(0, 0, -1);
+            if (mobileClass.includes("s")) moveHeight(0, 0);
+            if (mobileClass.includes("w")) moveHeight(0, 0);
+            if (mobileClass.includes("a")) moveWidth(0, 0, 1);
+          }
+
+          function fireMobile() {
+            joystickGun.addEventListener("touchstart", () => {
+              shotsInScreen();
+            });
+          }
+          fireMobile();
+        }
+      }
+
+      mobile();
+
+      window.addEventListener("resize", () => {
+        screenWidth = content.clientWidth;
+        screenHeight = content.clientHeight;
+        verifyIsMobile();
+        mobile();
+      });
     }
   }
 }
