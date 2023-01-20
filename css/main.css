@@ -11,9 +11,11 @@ body {
 
 .introducao {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: 1em;
   color: #ff1adf;
   justify-self: center;
   text-align: center;
