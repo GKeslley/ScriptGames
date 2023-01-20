@@ -1,0 +1,162 @@
+#naveGame {
+  height: 100vh;
+}
+
+.backgroundGame {
+  background-image: url("../../imgs/gameImgs/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "VCR OSD Mono", monospace;
+  height: 100vh;
+}
+
+.initGame {
+  position: absolute;
+  z-index: 2000;
+  background: rgba(255, 255, 255, 0.075);
+  margin-top: 15px;
+}
+
+.initGame h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.initGame .teclas {
+  margin-top: 12px;
+}
+
+.initGame p {
+  margin-bottom: 10px;
+}
+
+.initGame button {
+  margin-top: 12px;
+  background: rgb(204, 0, 175);
+  border: none;
+  padding: 4px 12px;
+  font-family: "VCR OSD Mono", monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.initGame button:hover {
+  background: rgb(160, 2, 136);
+}
+
+.initGame.close {
+  display: none;
+}
+
+.initGame span {
+  display: block;
+  margin-top: 5px;
+}
+
+.moedas {
+  display: flex;
+  right: 10px;
+  top: 10px;
+  position: absolute;
+  gap: 0px 12px;
+  align-items: center;
+}
+
+.moedas img {
+  width: 1em;
+  height: 1em;
+}
+
+.screenGame {
+  position: relative;
+  height: 20em;
+}
+
+.airPlayer {
+  display: flex;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+}
+
+.fire {
+  display: inline-block;
+  width: 5px;
+  height: 2px;
+  background: red;
+  position: absolute;
+}
+
+.alienEnemy {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  transition: 0.3s;
+}
+
+.drone {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  transition: 0.3s;
+  animation: moveDrone 2s ease-in-out infinite;
+  animation-direction: alternate;
+}
+
+@keyframes moveDrone {
+  from {
+    transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    transform: translate3d(0px, 10px, 0px);
+  }
+}
+
+.bomba {
+  display: none;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  transition: 0.3s;
+}
+
+.coin {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+}
+
+.gameOver {
+  display: none;
+}
+
+.gameOver.active {
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 2000;
+}
+
+.gameOver h1 {
+  color: #fff;
+  text-shadow: 3px 3px #000;
+  margin-top: 20px;
+  align-self: center;
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.gameOver p {
+  color: #fff;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px #000;
+}
+
+#naveGame .reset {
+  background: rgb(22 22 22 / 24%);
+}
