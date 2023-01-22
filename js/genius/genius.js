@@ -1,180 +1,180 @@
 import outsideClick from "../reused/outsideclick.js";
 
 export default function geniusGame() {
-  const content = document.querySelector(".genius");
-  const colorContainer = document.querySelectorAll(".colorContainer");
+  if (document.body.id === "gameGenius") {
+    const content = document.querySelector(".genius");
+    const colorContainer = document.querySelectorAll(".colorContainer");
 
-  const countPlays = document.getElementById("count");
-  const btnInitGame = document.querySelector(".genius .initBtn");
+    const countPlays = document.getElementById("count");
+    const btnInitGame = document.querySelector(".genius .initBtn");
 
-  const audios = document.querySelectorAll(".audios audio");
+    const audios = document.querySelectorAll(".audios audio");
 
-  if (content && colorContainer.length) {
-    const openContentHelp = document.querySelector(".helpElement span");
-    let contCorrect = 1;
+    if (content && colorContainer.length) {
+      const openContentHelp = document.querySelector(".helpElement span");
+      let contCorrect = 1;
 
-    let sequence = 1;
-    let count = 0;
+      let sequence = 1;
+      let count = 0;
 
-    const randomNumbers = [];
-    const targetColors = [];
+      const randomNumbers = [];
+      const targetColors = [];
 
-    function openHelp() {
-      const helpContent = document.querySelector(".help");
-      const helpModal = document.querySelector(".helpModal");
-      helpContent.classList.add("active");
-      const outside = new outsideClick(helpModal, ["click"], () => {
-        helpContent.classList.remove("active");
-      });
-      outside.init();
-    }
-
-    openContentHelp.addEventListener("click", openHelp);
-
-    function startGeniusGame() {
-      let i = contCorrect;
-
-      function setRandomNumbers() {
-        const randomColors = Math.floor(Math.random() * 4);
-        return randomColors;
+      function openHelp() {
+        const helpContent = document.querySelector(".help");
+        const helpModal = document.querySelector(".helpModal");
+        helpContent.classList.add("active");
+        const outside = new outsideClick(helpModal, ["click"], () => {
+          helpContent.classList.remove("active");
+        });
+        outside.init();
       }
 
-      while (i + 1 > contCorrect) {
-        randomNumbers.push(setRandomNumbers());
-        i--;
-      }
+      openContentHelp.addEventListener("click", openHelp);
 
-      function changingColors() {
-        content.classList.add("proxRound");
+      function startGeniusGame() {
+        let i = contCorrect;
 
-        function setChangeColor() {
-          const indexColorContainer = randomNumbers[count];
-
-          //Adiciona a classe change
-          colorContainer[indexColorContainer].classList.add("change");
-          audios[indexColorContainer].play();
-
-          //Em 200 milisegundos ele remove a classe
-          setTimeout(() => {
-            colorContainer[indexColorContainer].classList.remove("change");
-          }, 200);
-
-          //Para não ativar duas vezes a função, logo apos a remoção ele soma +1 e da clear
-          //no intervalo se for igual aos length dos indexs
-          setTimeout(() => {
-            count++;
-            if (count === randomNumbers.length) {
-              clearInterval(changeColors);
-              count = 0;
-              content.classList.remove("proxRound");
-            }
-          }, 201);
+        function setRandomNumbers() {
+          const randomColors = Math.floor(Math.random() * 4);
+          return randomColors;
         }
 
-        const changeColors = setInterval(setChangeColor, 800);
-      }
+        while (i + 1 > contCorrect) {
+          randomNumbers.push(setRandomNumbers());
+          i--;
+        }
 
-      changingColors();
+        function changingColors() {
+          content.classList.add("proxRound");
 
-      function choosingElement({ target }) {
-        const eventTarget = [...colorContainer].indexOf(target);
+          function setChangeColor() {
+            const indexColorContainer = randomNumbers[count];
 
-        colorContainer.forEach((element) =>
-          element.classList.remove("current")
-        );
+            //Adiciona a classe change
+            colorContainer[indexColorContainer].classList.add("change");
+            audios[indexColorContainer].play();
 
-        colorContainer[eventTarget].classList.add("current");
-        targetColors.push([...colorContainer].indexOf(target));
-        audios[eventTarget].play();
-        verifyIsCorrect();
-      }
+            //Em 200 milisegundos ele remove a classe
+            setTimeout(() => {
+              colorContainer[indexColorContainer].classList.remove("change");
+            }, 200);
 
-      function verifyIsCorrect() {
-        for (let targetTrue = 0; targetTrue < targetColors.length; targetTrue) {
-          if (randomNumbers[targetTrue] === targetColors[targetTrue]) {
-            targetTrue++;
-          } else {
-            targetTrue = 0;
-            wrongSequence();
+            //Para não ativar duas vezes a função, logo apos a remoção ele soma +1 e da clear
+            //no intervalo se for igual aos length dos indexs
+            setTimeout(() => {
+              count++;
+              if (count === randomNumbers.length) {
+                clearInterval(changeColors);
+                count = 0;
+                content.classList.remove("proxRound");
+              }
+            }, 201);
+          }
+
+          const changeColors = setInterval(setChangeColor, 800);
+        }
+
+        changingColors();
+
+        function choosingElement({ target }) {
+          const eventTarget = [...colorContainer].indexOf(target);
+
+          colorContainer.forEach((element) => element.classList.remove("current"));
+
+          colorContainer[eventTarget].classList.add("current");
+          targetColors.push([...colorContainer].indexOf(target));
+          audios[eventTarget].play();
+          verifyIsCorrect();
+        }
+
+        function verifyIsCorrect() {
+          for (let targetTrue = 0; targetTrue < targetColors.length; targetTrue) {
+            if (randomNumbers[targetTrue] === targetColors[targetTrue]) {
+              targetTrue++;
+            } else {
+              targetTrue = 0;
+              wrongSequence();
+            }
+          }
+
+          const verifyEquality = targetColors.filter((element, i) => {
+            return element === randomNumbers[i];
+          });
+
+          if (
+            verifyEquality.length === randomNumbers.length &&
+            verifyEquality.length > 0
+          ) {
+            sequence++;
+            correctSequence();
           }
         }
 
-        const verifyEquality = targetColors.filter((element, i) => {
-          return element === randomNumbers[i];
-        });
-
-        if (
-          verifyEquality.length === randomNumbers.length &&
-          verifyEquality.length > 0
-        ) {
-          sequence++;
-          correctSequence();
+        function clearAndRemoveEvent() {
+          targetColors.splice(0, targetColors.length);
+          colorContainer.forEach((element) => {
+            element.removeEventListener("click", choosingElement);
+          });
         }
+
+        function correctSequence() {
+          countPlays.innerText = sequence;
+          contCorrect++;
+          clearAndRemoveEvent();
+          document.body.classList.add("correctSequence");
+        }
+
+        function wrongSequence() {
+          randomNumbers.splice(0, randomNumbers.length);
+          contCorrect = 1;
+          sequence = 1;
+          countPlays.innerText = 1;
+          clearAndRemoveEvent();
+          document.body.classList.add("wrongSequence");
+        }
+
+        function eventListenersClick() {
+          colorContainer.forEach((element) => {
+            element.addEventListener("click", choosingElement);
+            element.addEventListener("mouseup", () => {
+              setTimeout(() => {
+                element.classList.remove("current");
+              }, 200);
+            });
+          });
+        }
+
+        eventListenersClick();
       }
 
-      function clearAndRemoveEvent() {
-        targetColors.splice(0, targetColors.length);
-        colorContainer.forEach((element) => {
-          element.removeEventListener("click", choosingElement);
-        });
-      }
-
-      function correctSequence() {
-        countPlays.innerText = sequence;
-        contCorrect++;
-        clearAndRemoveEvent();
-        document.body.classList.add("correctSequence");
-      }
-
-      function wrongSequence() {
-        randomNumbers.splice(0, randomNumbers.length);
-        contCorrect = 1;
-        sequence = 1;
-        countPlays.innerText = 1;
-        clearAndRemoveEvent();
-        document.body.classList.add("wrongSequence");
-      }
-
-      function eventListenersClick() {
-        colorContainer.forEach((element) => {
-          element.addEventListener("click", choosingElement);
-          element.addEventListener("mouseup", () => {
-            setTimeout(() => {
-              element.classList.remove("current");
-            }, 200);
+      function observerSequence() {
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (
+              mutation.target.classList.contains("correctSequence") ||
+              mutation.target.classList.contains("wrongSequence")
+            ) {
+              document.body.classList.remove("correctSequence");
+              document.body.classList.remove("wrongSequence");
+              startGeniusGame();
+            }
           });
         });
+
+        observer.observe(document.body, { attributes: true });
       }
 
-      eventListenersClick();
-    }
+      observerSequence();
 
-    function observerSequence() {
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (
-            mutation.target.classList.contains("correctSequence") ||
-            mutation.target.classList.contains("wrongSequence")
-          ) {
-            document.body.classList.remove("correctSequence");
-            document.body.classList.remove("wrongSequence");
-            startGeniusGame();
-          }
+      function initGame() {
+        btnInitGame.addEventListener("click", () => {
+          btnInitGame.classList.add("userInitGame");
+          startGeniusGame();
         });
-      });
+      }
 
-      observer.observe(document.body, { attributes: true });
+      initGame();
     }
-
-    observerSequence();
-
-    function initGame() {
-      btnInitGame.addEventListener("click", () => {
-        btnInitGame.classList.add("userInitGame");
-        startGeniusGame();
-      });
-    }
-
-    initGame();
   }
 }
