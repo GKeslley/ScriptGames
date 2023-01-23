@@ -1,0 +1,66 @@
+.sidebar {
+  display: grid;
+  grid-template-rows: 5em 1fr;
+  color: var(--color-0);
+  background: rgb(24, 24, 24);
+  text-shadow: 3px 3px var(--color-12);
+  height: 100vh;
+}
+
+.sidebar h2 {
+  text-shadow: 3px 3px var(--color-12);
+  margin-top: 20px;
+  align-self: center;
+}
+
+.sidebar ul {
+  padding-top: 10px;
+}
+
+.sidebar ul li {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 5px 0px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding: 12px;
+  transition: 0.3s;
+}
+
+.sidebar ul li:hover {
+  background: rgb(51, 51, 51);
+  border-radius: 4px;
+}
+
+.sidebar ul li div {
+  display: flex;
+  gap: 0px 24px;
+  align-items: center;
+}
+
+.sidebar ul li p {
+  font-size: 1.2rem;
+}
+
+.sidebar button {
+  background: #242424;
+  color: var(--color-0);
+  border: none;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-shadow: 2px 2px var(--color-12);
+  color: var(--color-g0);
+  font-size: 1rem;
+  cursor: pointer;
+  justify-self: right;
+}
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+}

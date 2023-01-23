@@ -5,7 +5,6 @@
 
 #termosBody .reset p {
   text-align: center;
-  font-size: 1.2rem;
   margin-bottom: 1em;
 }
 
@@ -17,11 +16,11 @@
 
 .termos {
   display: grid;
+  font-family: "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
   grid-template-rows: auto auto;
   margin: 0 auto;
-  font-family: "VCR OSD Mono";
   padding-top: 10px;
-  color: #fff;
+  color: var(--color-0);
 }
 
 .termosText {
@@ -33,84 +32,6 @@
 
 .termosText div {
   text-align: center;
-}
-
-.helpElement {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-}
-
-.helpElement span {
-  border: 2px solid #fff;
-  padding: 1px 4px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.help {
-  height: 100vh;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  padding: 1em 1em;
-  top: 0;
-  left: 0;
-  z-index: 2000;
-  justify-content: center;
-  align-items: center;
-  display: none;
-}
-
-.help.active {
-  display: block;
-  overflow-y: auto;
-}
-
-.helpModal {
-  background: rgb(29, 29, 29);
-  padding: 40px;
-  border: 10px solid rgb(224, 224, 224);
-  box-shadow: 0 0 0 10px rgb(39, 39, 39);
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  margin-top: 4em;
-  min-width: 80vw;
-  max-width: 600px;
-  box-sizing: border-box;
-}
-
-.helpModal p {
-  font-size: 1.2rem;
-  margin-bottom: 1em;
-}
-
-.helpModal ul {
-  display: grid;
-  gap: 24px 0px;
-}
-
-.helpModal li {
-  line-height: 1.1;
-}
-
-.helpModal ul li span {
-  display: block;
-  border: 2px solid #fff;
-  max-width: max-content;
-  padding: 4px 12px;
-  border-radius: 4px;
-  margin-top: 0.5em;
-}
-
-.helpModal ul li:nth-child(3) span {
-  background: #008000;
-}
-
-.helpModal ul li:nth-child(4) span {
-  background: #ab9600;
 }
 
 .blocos {
@@ -132,7 +53,7 @@
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
-  background: #333333;
+  background: var(--color-9);
   width: 55px;
   height: 55px;
   margin-top: 12px;
@@ -167,7 +88,7 @@
   align-items: center;
   grid-column: span 3;
   font-family: "VCR OSD Mono";
-  color: #fff;
+  color: var(--color-0);
   background: #93929218;
   border: none;
   line-height: 2.5em;
@@ -213,7 +134,7 @@ li[data-select="true"]::before {
   width: 2em;
   height: 0.1em;
   position: absolute;
-  color: #fff;
+  color: var(--color-0);
   background: rgb(255, 255, 255);
   bottom: 10px;
 }
@@ -223,15 +144,23 @@ li[data-select="true"]::before {
   pointer-events: none;
 }
 
+.helpModal ul li:nth-child(3) span {
+  background: #008000;
+}
+
+.helpModal ul li:nth-child(4) span {
+  background: #ab9600;
+}
+
 @media (max-width: 1010px) {
   .blocos {
     margin-bottom: 0.3em;
   }
-  .content {
+  #termosBody .content {
     display: block;
     grid-template-columns: 1fr;
   }
-  .sidebar {
+  #termosBody .sidebar {
     display: none;
   }
 }

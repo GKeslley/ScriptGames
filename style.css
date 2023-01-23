@@ -9,3 +9,8 @@
 @import "./css/games/naveGun.css";
 @import "./css/games/genius.css";
 @import "./css/games/termos.css";
+
+@import "./css/utilidades/colors.css";
+@import "./css/utilidades/sidebar.css";
+@import "./css/utilidades/tipografia.css";
+@import "./css/utilidades/helpModal.css";

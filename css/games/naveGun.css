@@ -6,7 +6,7 @@
   background-image: url("../../imgs/gameImgs/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: "VCR OSD Mono", monospace;
+  font-family: "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
   height: 100vh;
 }
 
@@ -18,7 +18,6 @@
 }
 
 .initGame h1 {
-  font-size: 2rem;
   margin-bottom: 12px;
 }
 
@@ -32,17 +31,15 @@
 
 .initGame button {
   margin-top: 12px;
-  background: rgb(204, 0, 175);
+  background: #cc00af;
   border: none;
   padding: 4px 12px;
-  font-family: "VCR OSD Mono", monospace;
-  font-size: 1rem;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .initGame button:hover {
-  background: rgb(160, 2, 136);
+  background: #a00288;
 }
 
 .initGame.close {
@@ -54,7 +51,7 @@
   margin-top: 5px;
 }
 
-.moedas {
+.contentQuantCoin {
   display: flex;
   right: 10px;
   top: 10px;
@@ -63,7 +60,7 @@
   align-items: center;
 }
 
-.moedas img {
+.contentQuantCoin img {
   width: 1em;
   height: 1em;
 }
@@ -143,8 +140,8 @@
 }
 
 .gameOver h1 {
-  color: #fff;
-  text-shadow: 3px 3px #000;
+  color: var(--color-0);
+  text-shadow: 3px 3px var(--color-12);
   margin-top: 20px;
   align-self: center;
   font-size: 3rem;
@@ -152,9 +149,9 @@
 }
 
 .gameOver p {
-  color: #fff;
+  color: var(--color-0);
   margin-bottom: 15px;
-  text-shadow: 1px 1px #000;
+  text-shadow: 1px 1px var(--color-12);
 }
 
 #naveGame .reset {
@@ -211,7 +208,7 @@ body.mobileUser .mobileInformation .fullscreen {
   display: block;
   width: 4px;
   height: 9px;
-  background: #ff1adf;
+  background: var(--color-p0);
 }
 
 body.mobileUser .fullscreen:after {
@@ -219,7 +216,7 @@ body.mobileUser .fullscreen:after {
   display: inline-block;
   width: 4px;
   height: 4.5px;
-  background: #ff1adf;
+  background: var(--color-p0);
   margin-left: 4px;
   margin-top: 4.5px;
 }
@@ -258,7 +255,7 @@ body.mobileUser #joystickGun {
   display: block;
   width: 100px;
   height: 100px;
-  border: 1px solid #000;
+  border: 1px solid var(--color-12);
   border-radius: 50%;
   position: absolute;
   bottom: 0px;
@@ -272,7 +269,7 @@ body.mobileUser #joystick {
 body.mobileUser #stick {
   width: 70px;
   height: 70px;
-  background: #000;
+  background: var(--color-12);
   border-radius: 50%;
   position: absolute;
   top: 14px;
@@ -281,11 +278,11 @@ body.mobileUser #stick {
 
 body.mobileUser #joystickGun {
   right: 20px;
-  background: #0000001f;
+  background: #00000018;
 }
 
 body.mobileUser #joystickGun:active {
-  background: #00000050;
+  background: #0000003d;
 }
 
 body.mobileUser #stickGun {

@@ -10,18 +10,14 @@
 }
 
 .games .text h1 {
-  font-size: 3rem;
-  text-shadow: 3px 3px #551a8b;
-  color: #ff1adf;
-  font-family: "VCR OSD Mono";
+  text-shadow: 3px 3px var(--color-pl0);
+  color: var(--color-p0);
   margin-bottom: 12px;
 }
 
 .games .text p {
-  font-size: 1.2rem;
-  color: white;
-  text-shadow: 3px 3px #000;
-  font-family: "VCR OSD Mono";
+  color: var(--color-0);
+  text-shadow: 3px 3px var(--color-12);
 }
 
 .gamesContent ul {
@@ -58,13 +54,12 @@
 }
 
 .gamesContent span {
-  color: #fff;
-  text-shadow: 3px 3px #000;
-  font-family: "VCR OSD Mono";
+  color: var(--color-0);
+  text-shadow: 3px 3px var(--color-12);
 }
 
 .gameMemoria img {
-  background: #551a8b;
+  background: var(--color-pl0);
   padding: 8px;
   border-radius: 5px;
 }
