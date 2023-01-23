@@ -1,0 +1,95 @@
+.helpElement {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.helpElement span {
+  border: 2px solid var(--color-0);
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.help {
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.help.active {
+  display: block;
+}
+
+.helpModal {
+  background: rgb(29, 29, 29);
+  padding: 40px;
+  border: 10px solid #e0e0e0;
+  box-shadow: 0 0 0 10px rgb(39, 39, 39);
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  margin-top: 4em;
+  min-width: 80vw;
+  max-width: 600px;
+  box-sizing: border-box;
+  font-family: "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
+}
+
+.helpModal p {
+  font-size: 1.2rem;
+  margin-bottom: 1em;
+}
+
+.helpModal ul {
+  display: grid;
+  gap: 24px 0px;
+}
+
+.helpModal li {
+  line-height: 1.1;
+}
+
+.helpModal ul li span {
+  display: block;
+  border: 2px solid var(--color-0);
+  max-width: max-content;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-top: 0.5em;
+}
+
+.reset {
+  display: none;
+  position: absolute;
+  top: 40%;
+  background: rgb(22 22 22);
+  padding: 2em 3em;
+  border-radius: 4px;
+}
+
+.reset.active {
+  display: block;
+}
+
+.reset button,
+.reset a {
+  padding: 8px 16px;
+  box-shadow: rgb(0 0 0 / 75%) 3px 3px 0px;
+}
+
+.reset div {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 0px 20px;
+  justify-content: center;
+}
