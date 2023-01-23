@@ -1,7 +1,7 @@
 import outsideClick from "../reused/outsideclick.js";
 
 export default function geniusGame() {
-  if (document.body.id === "gameGenius") {
+  if (document.body.id === "geniusGame") {
     const content = document.querySelector(".genius");
     const colorContainer = document.querySelectorAll(".colorContainer");
 
@@ -51,17 +51,13 @@ export default function geniusGame() {
           function setChangeColor() {
             const indexColorContainer = randomNumbers[count];
 
-            //Adiciona a classe change
             colorContainer[indexColorContainer].classList.add("change");
             audios[indexColorContainer].play();
 
-            //Em 200 milisegundos ele remove a classe
             setTimeout(() => {
               colorContainer[indexColorContainer].classList.remove("change");
             }, 200);
 
-            //Para não ativar duas vezes a função, logo apos a remoção ele soma +1 e da clear
-            //no intervalo se for igual aos length dos indexs
             setTimeout(() => {
               count++;
               if (count === randomNumbers.length) {

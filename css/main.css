@@ -16,17 +16,15 @@ body {
   align-items: center;
   width: 100%;
   gap: 1em;
-  color: #ff1adf;
+  color: var(--color-p0);
   justify-self: center;
   text-align: center;
   align-self: center;
 }
 
 .introducao h1 {
-  text-shadow: 3px 3px #551a8b;
-  font-family: "Capcom", monospace;
-  font-size: 3rem;
-  border: 3px solid #ff1adf;
+  text-shadow: 3px 3px var(--color-pl0);
+  border: 3px solid var(--color-p0);
   padding: 8px;
 }
 
@@ -36,10 +34,8 @@ body {
 }
 
 .introducao ul li {
-  font-family: "VCR OSD Mono";
-  text-shadow: 3px 3px #000;
-  color: rgb(84, 255, 26);
-  font-size: 1.2rem;
+  text-shadow: 3px 3px var(--color-12);
+  color: var(--color-g0);
 }
 
 .logo {
@@ -49,7 +45,5 @@ body {
 }
 
 .logo span {
-  font-size: 2.6rem;
-  font-family: "Capcom", monospace;
-  text-shadow: 3px 3px #551a8b;
+  text-shadow: 3px 3px var(--color-pl0);
 }

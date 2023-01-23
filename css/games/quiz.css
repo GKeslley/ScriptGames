@@ -3,41 +3,21 @@
   grid-template-rows: 2em 1fr;
   justify-items: center;
   text-align: center;
-  color: white;
-  font-family: "VCR OSD Mono", monospace;
+  color: var(--color-0);
+  font-family: "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
   padding-top: 20px;
 }
 
 .quiz h1 {
-  text-shadow: 3px 3px #000000;
+  text-shadow: 3px 3px var(--color-12);
   margin-top: 70px;
   align-self: center;
-  font-size: 4rem;
   margin-bottom: 30px;
 }
 
 .quiz p {
   margin-bottom: 40px;
-  font-size: 1.2rem;
-  text-shadow: 3px 3px #000000;
-}
-
-.quiz button,
-.quiz a {
-  background: rgb(204, 0, 175);
-  border: none;
-  font-family: "VCR OSD Mono", monospace;
-  padding: 16px 32px;
-  color: white;
-  font-size: 1.2rem;
-  box-shadow: rgb(0 0 0 / 75%) 5px 8px 0px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.quiz button:hover,
-.quiz a:hover {
-  background: rgb(68, 21, 111);
+  text-shadow: 3px 3px var(--color-12);
 }
 
 marquee span {
@@ -77,7 +57,7 @@ body.activeQuiz .contentPerguntas ul li {
   padding: 8px 24px;
   border-radius: 4px;
   cursor: pointer;
-  text-shadow: 2px 2px #000000;
+  text-shadow: 2px 2px var(--color-12);
   transition: 0.2s;
   font-size: 1.2rem;
 }
@@ -120,35 +100,6 @@ body.activeQuiz .contentPerguntas ul li.markGreen {
 
 body.activeQuiz .contentPerguntas ul li.markRed {
   background: rgb(175, 28, 2);
-}
-
-.reset {
-  display: none;
-  position: absolute;
-  top: 40%;
-  background: rgb(22 22 22);
-  padding: 2em 3em;
-  border-radius: 4px;
-  pointer-events: all;
-  user-select: all;
-}
-
-.reset.active {
-  display: block;
-}
-
-.reset button,
-.reset a {
-  padding: 8px 16px;
-  box-shadow: rgb(0 0 0 / 75%) 3px 3px 0px;
-}
-
-.reset div {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1;
-  gap: 0px 20px;
-  justify-content: center;
 }
 
 .pergunta.resetOpen li {
