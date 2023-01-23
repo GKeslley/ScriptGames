@@ -1,0 +1,59 @@
+.lText {
+  font: 600 4rem/0.7 "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
+}
+
+.primaryText {
+  font: 600 3rem/0.9 "Capcom", "VCR OSD Mono", "Press Start 2P", monospace;
+}
+
+.primaryText-font2 {
+  font: 600 3rem/1 "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
+}
+
+.subText {
+  font: 500 2.5rem/0.7 "Capcom", "VCR OSD Mono", "Press Start 2P", monospace;
+}
+
+.mText {
+  font: 500 2rem/0.7 "Capcom", "VCR OSD Mono", "Press Start 2P", monospace;
+}
+
+.mText-font2 {
+  font: 800 2rem/0.7 "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
+}
+
+.bText {
+  font: 500 1.5rem/0.7 "Capcom", "VCR OSD Mono", "Press Start 2P", monospace;
+}
+
+.bText-font2 {
+  font: 500 1.5rem/1 "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
+}
+
+.bText-weight {
+  font: 800 1.5rem/0.7 "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
+}
+
+.pText {
+  font: 500 1.2rem/1 "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
+}
+
+.pText-2 {
+  font: 500 1.2rem/1.2 "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
+}
+
+.pText-font2 {
+  font: 500 1.2rem/0.7 "Capcom", "VCR OSD Mono", "Press Start 2P", monospace;
+}
+
+.ppText {
+  font: 500 1rem/1 "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
+}
+
+.ppText-font2 {
+  font: 500 1rem/1 "Capcom", "VCR OSD Mono", "Press Start 2P", monospace;
+}
+
+.links {
+  font: 500 1.2rem/1 "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
+}
