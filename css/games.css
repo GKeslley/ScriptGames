@@ -1,6 +1,7 @@
 .games {
   display: grid;
   padding-bottom: 50px;
+  justify-self: center;
 }
 
 .games .text {

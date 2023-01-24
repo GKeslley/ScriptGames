@@ -17,7 +17,7 @@
 .termos {
   display: grid;
   font-family: "VCR OSD Mono", "Capcom", "Press Start 2P", monospace;
-  grid-template-rows: auto auto;
+  grid-template-rows: max-content max-content;
   margin: 0 auto;
   padding-top: 10px;
   color: var(--color-0);
@@ -39,7 +39,7 @@
   width: auto;
   flex-direction: column;
   justify-self: center;
-  padding-top: 5px;
+  padding: 1em 0em;
 }
 
 .blocos-item {
@@ -226,6 +226,7 @@ li[data-select="true"]::before {
 
   .blocos {
     gap: 0em;
+    padding: 0em;
   }
 
   .blocos-item {

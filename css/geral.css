@@ -45,7 +45,7 @@ a {
 
 @media (max-width: 820px) {
   .introducao {
-    gap: 0.6em 1em !important;
+    gap: 0.8em 1em !important;
   }
 
   .logo {
