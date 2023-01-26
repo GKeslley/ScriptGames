@@ -1,0 +1,24 @@
+.container {
+  max-width: 1400px;
+  padding-right: 30px;
+  padding-left: 30px;
+  margin-right: 0px;
+  margin-left: 0px;
+  box-sizing: border-box;
+}
+
+.btnReset {
+  background: #cc00af;
+  border: none;
+  font-family: "VCR OSD Mono", monospace;
+  padding: 16px 32px;
+  color: var(--color-0);
+  font-size: 1.2rem;
+  box-shadow: rgb(0 0 0 / 75%) 5px 8px 0px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btnReset:hover {
+  background: rgb(68, 21, 111);
+}

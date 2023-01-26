@@ -1,8 +1,5 @@
 @import "./css/geral.css";
-@import "./css/header.css";
-@import "./css/elementos.css";
-@import "./css/games.css";
-@import "./css/main.css";
+@import "./css/index.css";
 @import "./css/sobre.css";
 
 @import "./css/games/memory.css";
@@ -11,6 +8,7 @@
 @import "./css/games/genius.css";
 @import "./css/games/termos.css";
 
+@import "./css/utilidades/reused.css";
 @import "./css/utilidades/colors.css";
 @import "./css/utilidades/sidebar.css";
 @import "./css/utilidades/tipografia.css";

@@ -1,0 +1,125 @@
+body {
+  background: rgb(14, 15, 15);
+  display: grid;
+  grid-template-rows: 100px 1fr;
+}
+
+.introducao-bg {
+  display: grid;
+  background: rgb(17, 17, 17);
+}
+
+.introducao {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 1em;
+  color: var(--color-p0);
+  justify-self: center;
+  text-align: center;
+  align-self: center;
+}
+
+.introducao h1 {
+  text-shadow: 3px 3px var(--color-pl0);
+  border: 3px solid var(--color-p0);
+  padding: 8px;
+}
+
+.introducao ul {
+  display: flex;
+  gap: 0px 24px;
+}
+
+.introducao ul li {
+  text-shadow: 3px 3px var(--color-12);
+  color: var(--color-g0);
+}
+
+.logo {
+  display: flex;
+  gap: 0 12px;
+  align-items: center;
+}
+
+.logo span {
+  text-shadow: 3px 3px var(--color-pl0);
+}
+
+.games {
+  display: grid;
+  padding-bottom: 50px;
+  justify-self: center;
+}
+
+.games .text {
+  justify-self: center;
+  text-align: center;
+  padding: 60px 0px;
+}
+
+.games .text h1 {
+  text-shadow: 3px 3px var(--color-pl0);
+  color: var(--color-p0);
+  margin-bottom: 12px;
+}
+
+.games .text p {
+  color: var(--color-0);
+  text-shadow: 3px 3px var(--color-12);
+}
+
+.gamesContent ul {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.gamesContent ul li {
+  height: inherit;
+}
+
+.gamesContent ul li picture {
+  height: inherit;
+}
+
+.gamesContent ul li img {
+  width: 10em;
+  object-fit: cover;
+  min-height: 170px;
+  margin-bottom: 8px;
+}
+
+.gameMemoria {
+  display: grid;
+  justify-items: center;
+}
+
+.gameMemoria picture {
+  cursor: pointer;
+}
+
+.gamesContent span {
+  color: var(--color-0);
+  text-shadow: 3px 3px var(--color-12);
+}
+
+.gameMemoria img {
+  background: var(--color-pl0);
+  padding: 8px;
+  border-radius: 5px;
+}
+
+@media (max-width: 400px) {
+  .text h1 {
+    font-size: 2.5rem;
+  }
+  .text p {
+    font-size: 1rem;
+  }
+}
