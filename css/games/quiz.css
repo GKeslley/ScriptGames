@@ -106,3 +106,18 @@ body.activeQuiz .contentPerguntas ul li.markRed {
   pointer-events: none;
   user-select: none;
 }
+
+@media (max-width: 410px) {
+  body.activeQuiz .contentPerguntas ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 365px) {
+  .quiz-introduction h1 {
+    font-size: 3rem;
+  }
+  .quiz-introduction p {
+    font-size: 1rem;
+  }
+}

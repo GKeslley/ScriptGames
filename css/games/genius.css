@@ -119,3 +119,27 @@
 .yellow.current {
   background: linear-gradient(#a38606, #f0c504);
 }
+
+@media (max-width: 600px) {
+  .pecas {
+    grid-template-columns: repeat(2, 8em);
+  }
+  .colorContainer {
+    width: 8em;
+    height: 8em;
+    cursor: none;
+  }
+  .circleGenius {
+    top: 4.5em;
+    left: 4.5em;
+    width: 7em;
+    height: 7em;
+  }
+  .circleGenius h1 {
+    font-size: 1rem;
+    padding-top: 1.5em;
+  }
+  .circleGenius span {
+    margin-top: 0.5em;
+  }
+}
